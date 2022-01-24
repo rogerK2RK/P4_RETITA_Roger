@@ -97,7 +97,8 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+    /*margin-top: -15px;*/
+    color: #fe142f;
   }
 } 
 
