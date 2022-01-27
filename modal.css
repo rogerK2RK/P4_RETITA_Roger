@@ -34,9 +34,19 @@ img {
   overflow: hidden;
   margin: 3.5%;
 }
+
 .header-logo {
     float: left;
 }
+@media screen and (max-width: 540px) {
+  .header-logo {
+    width: 53%;
+  }
+  .logo{
+    width: 100%;
+  }
+}
+
 .main-navbar {
     float: right;
 }
@@ -98,7 +108,7 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    /*margin-top: -15px;*/
+    margin-top: -7px;
     color: #fe142f;
   }
 } 
