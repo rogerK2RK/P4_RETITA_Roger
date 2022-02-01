@@ -86,7 +86,11 @@ img {
     color: #fe142f;
   }
 }
-
+.result{
+  font-size: 0.8rem;
+  display: flex;
+  color: red;
+}
 @media screen and (max-width: 768px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
