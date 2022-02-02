@@ -21,7 +21,7 @@ function launchModal() {
 }
 
 //declaration d'un booleen pour le test final
-let isValid = true;
+var isValid = new Boolean("true");
 
 //Verifi le prenom
 let prenomUser = document.getElementById("first");
@@ -29,7 +29,7 @@ prenomUser.addEventListener("input", function(e){
   let prenomMessage = document.getElementById("prenom-validation");
   if(prenomUser.value.length < 4){
     prenomMessage.innerText = "Prénom doit faire plus de 3 caractère !";
-    isValid = false;
+    isValid = !isValid;
   }else{
     prenomMessage.innerText = ""; 
   }
@@ -41,7 +41,7 @@ nomUser.addEventListener("input", function(e){
   let nomMessage = document.getElementById("nom-validation");
   if(nomUser.value.length < 4){
     nomMessage.innerText = "Nom doit faire plus de 3 caractère !";
-    isValid = false;
+    isValid = !isValid;
   }else{
     nomMessage.innerText = "";
   }
@@ -55,7 +55,7 @@ emailUser.addEventListener("input", function(e){
     emailMessage.innerText = "";
   }else{
     emailMessage.innerText = "veuiller saisir un mail "+'"'+" exemple : nom.prenom@gmail.com "+'" !';
-    return isValid = false;
+    isValid = !isValid;
   }
 });
 
@@ -72,12 +72,13 @@ birthdateUser.addEventListener("input", function(e){
   console.log(date2);
   if(date1 > date2 && date2 > date3){ //si la date est valide
     birthdateMessage.innerText = "";
+    /*isValid = new Boolean("true");*/
   }else if(date1 < date2){ //si la date saisi est dans le future
     birthdateMessage.innerText = "Veuillez saisir une date qui n'est pas dans le futur";
-    isValid = false;
+    isValid = !isValid;
   }else if( date2 < date3 ){ //si la date est trop vieux
     birthdateMessage.innerText = "Vous êtes trop vieux !";
-    isValid = false;
+    isValid = !isValid;
   }
 });
 
@@ -96,20 +97,27 @@ check.addEventListener('change', e => {
 // DOM Elements
 const affichageValider = document.getElementById("afficheInscriValider");
 const boutonValider = document.getElementById("boutonInscription");
-// launch modal event
-boutonValider.addEventListener("click", function(e){
-  affichageValider.style.display = "block";
-  modalbg.style.display = "none";
-  e.preventDefault();
-});
 
-/*
-const validation = document.getElementById("boutonInscription");
-validation.addEventListener("click", function(e){
-  e.preventDefault();
-  if(isValid === true){
+/*function boolValid(){
+  if(isValid){
     console.log("c'est clean");
   }else{
     console.log("recommencer la saisi");
+    isValid = !isValid;
   }
-});*/
+}*/
+
+// launch modal event
+boutonValider.addEventListener("click", function(e){
+  /*affichageValider.style.display = "block";
+  modalbg.style.display = "none";*/
+  if(isValid){
+    affichageValider.style.display = "block";
+    modalbg.style.display = "none";
+    console.log("c'est clean");
+  }else{
+    console.log("recommencer la saisi");
+    isValid = !isValid;
+  }
+  e.preventDefault();
+});
