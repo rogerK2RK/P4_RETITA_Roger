@@ -55,13 +55,13 @@ emailUser.addEventListener("input", function(e){
     emailMessage.innerText = "";
   }else{
     emailMessage.innerText = "veuiller saisir un mail "+'"'+" exemple : nom.prenom@gmail.com "+'" !';
-    isValid = false;
+    return isValid = false;
   }
 });
 
 //verification de la date de naissance 
-const todayDate = new Date();
-const oldDate = new Date("01,01,1922")
+const todayDate = new Date();         //date d'aujourd'hui
+const oldDate = new Date("01,01,1922")      //pour vérifier si il a plus de 100 ans 
 const birthdateUser = document.getElementById("birthdate");
 
 birthdateUser.addEventListener("input", function(e){
@@ -70,21 +70,46 @@ birthdateUser.addEventListener("input", function(e){
   const date2 = new Date(birthdateUser.value);
   const date3 = oldDate;
   console.log(date2);
-  if(date1 > date2 && date2 > date3){
+  if(date1 > date2 && date2 > date3){ //si la date est valide
     birthdateMessage.innerText = "";
-  }else if(date1 < date2){
-    birthdateMessage.innerText = "Impossiqle saisir une année qui est dans le futur";
+  }else if(date1 < date2){ //si la date saisi est dans le future
+    birthdateMessage.innerText = "Veuillez saisir une date qui n'est pas dans le futur";
     isValid = false;
-  }else if( date2 < date3 ){
+  }else if( date2 < date3 ){ //si la date est trop vieux
     birthdateMessage.innerText = "Vous êtes trop vieux !";
     isValid = false;
   }
 });
 
+//Verifie si un checkbox est check
+/*
+const check = document.getElementsByClassName("checkbox-input");
+check.addEventListener('change', e => {
+  if(e.target.checked === true){
+    console.log("Checkbox is checked")
+  }else if(e.target.checked === false){
+    console.log("Checkbox is not checked")
+  }
+});*/
 
 
+// DOM Elements
+const affichageValider = document.getElementById("afficheInscriValider");
+const boutonValider = document.getElementById("boutonInscription");
+// launch modal event
+boutonValider.addEventListener("click", function(e){
+  affichageValider.style.display = "block";
+  modalbg.style.display = "none";
+  e.preventDefault();
+});
 
-
-
-/*function validation(valid){
-if(){*/
+/*
+const validation = document.getElementById("boutonInscription");
+validation.addEventListener("click", function(e){
+  e.preventDefault();
+  if(isValid === true){
+    console.log("c'est clean");
+  }else{
+    console.log("recommencer la saisi");
+  }
+});*/
