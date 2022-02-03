@@ -70,28 +70,26 @@ birthdateUser.addEventListener("input", function(e){
   const date2 = new Date(birthdateUser.value);
   const date3 = oldDate;
   console.log(date2);
+
   if(date1 > date2 && date2 > date3){ //si la date est valide
     birthdateMessage.innerText = "";
-    /*isValid = new Boolean("true");*/
   }else if(date1 < date2){ //si la date saisi est dans le future
     birthdateMessage.innerText = "Veuillez saisir une date qui n'est pas dans le futur";
-    isValid = !isValid;
+    isValid = false;
   }else if( date2 < date3 ){ //si la date est trop vieux
     birthdateMessage.innerText = "Vous êtes trop vieux !";
-    isValid = !isValid;
+    isValid = false;
   }
 });
 
-//Verifie si un checkbox est check
-/*
-const check = document.getElementsByClassName("checkbox-input");
-check.addEventListener('change', e => {
-  if(e.target.checked === true){
+function validate(){
+  if(document.getElementsByClassName("checkbox-label").checked){
     console.log("Checkbox is checked")
-  }else if(e.target.checked === false){
+  }else{
     console.log("Checkbox is not checked")
+    /*isValid = !isValid;*/
   }
-});*/
+}
 
 
 // DOM Elements
@@ -109,14 +107,14 @@ const boutonValider = document.getElementById("boutonInscription");
 
 // launch modal event
 boutonValider.addEventListener("click", function(e){
-  /*affichageValider.style.display = "block";
-  modalbg.style.display = "none";*/
+  /*validate();*/
+  let valableMessage = document.getElementById("");
   if(isValid){
     affichageValider.style.display = "block";
     modalbg.style.display = "none";
     console.log("c'est clean");
   }else{
-    console.log("recommencer la saisi");
+    valableMessage.innerText = "recommencer la saisi";
     isValid = !isValid;
   }
   e.preventDefault();
