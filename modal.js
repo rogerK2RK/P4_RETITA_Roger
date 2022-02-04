@@ -22,19 +22,18 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+      // Prenom
 const prenomUser = document.getElementById("first");
+
 // Verifie le prenom passé dans le formulaire
 function checkPrenom(){
-
   let prenomMessage = document.getElementById("prenom-validation");
-
   if(prenomUser.value.length < 2){
-    prenomMessage.innerText = "Le prénom doit faire plus de 2 caractères !";
+    prenomMessage.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
     return false
   }else{
-    prenomMessage.innerText = "oups"; 
+    prenomMessage.innerText = ""; 
   }
-
 }
 
 // quand l'utilisateur écrit son prénom
@@ -42,67 +41,122 @@ prenomUser.addEventListener("input", function(e){
   checkPrenom();
 });
 
-//Verifie le nom
-/*let nomUser  = document.getElementById("last");
-nomUser.addEventListener("input", function(e){
+     //  Nom
+const nomUser  = document.getElementById("last");
+
+// Verifie le nom passé dans le formulaire
+function checkNom(){
   let nomMessage = document.getElementById("nom-validation");
   if(nomUser.value.length < 2){
-    nomMessage.innerText = "Nom doit faire au moins 2 caractères !";
-    isValid = false;
+    nomMessage.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+    return false;
   }else{
     nomMessage.innerText = "";
   }
+}
+
+// quand l'utilisateur écrit son Nom
+nomUser.addEventListener("input", function(e){
+  checkNom();
 });
 
-//verifie le email
-let emailUser = document.getElementById("email");
-emailUser.addEventListener("input", function(e){
+      // email
+const emailUser = document.getElementById("email");
+
+// Verifie l'email passé dans le formulaire
+function checkEmail(){
   let emailMessage = document.getElementById("email-validation");
   if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailUser.value)){
     emailMessage.innerText = "";
   }else{
     emailMessage.innerText = "veuiller saisir un mail "+'"'+" exemple : nom.prenom@gmail.com "+'" !';
-    isValid = !isValid;
+    return false;
   }
+}
+
+// quand l'utilisateur écris son email
+emailUser.addEventListener("input", function(e){
+  checkEmail();
 });
 
-let birthdateUser = document.getElementById("birthdate")
-//verification de la date de naissance         
-birthdateUser.addEventListener("input", function(e){
+      // birthdate
+const birthdateUser = document.getElementById("birthdate")
+
+//verification de la date de naissance     
+function checkBirthdate(){
   let birthdateMessage = document.getElementById("birthdate-valitaion");
   const date1 = new Date(); //date d'aujourd'hui
   const date2 = new Date(birthdateUser.value);
-  const date3 = new Date("01,01,1922"); //pour vérifier si il a plus de 100 ans 
-
-  if(date1 > date2 && date2 > date3){ //si la date est valide
+  
+  if(date1 > date2){ //si la date est valide
     birthdateMessage.innerText = "";
-  }else if(date1 < date2){ //si la date saisi est dans le future
-    birthdateMessage.innerText = "Veuillez saisir une date qui n'est pas dans le futur";
-    isValid = false;
-  }else if( date2 < date3 ){ //si la date est trop vieux
-    birthdateMessage.innerText = "Vous êtes trop vieux !";
-    isValid = false;
+  } else{ //si la date saisi est dans le future
+    birthdateMessage.innerText = "Vous devez entrer votre date de naissance. Et ne doit pas être dans le futur.";
+    return false;
   }
-});*/
+}
+// quand l'utilisateur saisi ça date de naissance
+birthdateUser.addEventListener("input", function(e){
+  checkBirthdate();
+});
+
+      // checkbox condition generale
+const checkboxConditionUser = document.getElementById("checkbox1");
+
+// Verifie si le checkbox est check
+function checkboxConditionUtilisateur(){
+  let checkboxConditionMessage = document.getElementById("checkBoxCondUtilisateur");
+  if(checkboxConditionUser.checked){
+    checkboxConditionMessage.innerText = "";
+  } else{
+    checkboxConditionMessage.innerText = "* Vous devez vérifier que vous acceptez les termes et conditions.";
+    return false;
+  }
+
+}
+
+
+
 
 // DOM Elements
 const affichageValider = document.getElementById("afficheInscriValider");
-const boutonValider = document.getElementById("boutonInscription");
-
 
 // Quand l'utilisateur submit le formulaire
 function validate(){
 
   //declaration d'un booleen pour le test final
   let isValid = true;
-  console.log("avant"+isValid);
+
   // check du prenom
   let testPrenom = checkPrenom();
   if(testPrenom == false){
-    console.log(isValid);
     isValid = false;
   }
-  console.log("après"+isValid);
+
+  // check du nom
+  let testNom = checkNom();
+  if(testNom == false){
+    isValid = false;
+  }
+
+  // check du email
+  let testEmail = checkEmail();
+  if(testEmail == false){
+    isValid = false;
+  }
+
+  // check du birthdate
+  let testBirthdate = checkBirthdate();
+  if(testBirthdate == false){
+    isValid = false;
+  }
+
+  // check checkBox condition utilisateur
+  let testCheckboxCondUti = checkboxConditionUtilisateur();
+  if(testCheckboxCondUti == false){
+    isValid = false;
+  }
+  
   // contrôle qu'au moins une checkbox soit checkée
   // chercher sur Google comment faire pour savoir un si une checkbox est checkée parmi une liste de checkbox
 
