@@ -12,6 +12,8 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
+
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -20,28 +22,33 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-//declaration d'un booleen pour le test final
-var isValid = new Boolean("true");
+const prenomUser = document.getElementById("first");
+// Verifie le prenom passé dans le formulaire
+function checkPrenom(){
 
-//Verifi le prenom
-let prenomUser = document.getElementById("first");
-prenomUser.addEventListener("input", function(e){
   let prenomMessage = document.getElementById("prenom-validation");
-  if(prenomUser.value.length < 4){
-    prenomMessage.innerText = "Prénom doit faire plus de 3 caractère !";
-    isValid = !isValid;
+
+  if(prenomUser.value.length < 2){
+    prenomMessage.innerText = "Le prénom doit faire plus de 2 caractères !";
+    return false
   }else{
-    prenomMessage.innerText = ""; 
+    prenomMessage.innerText = "oups"; 
   }
+
+}
+
+// quand l'utilisateur écrit son prénom
+prenomUser.addEventListener("input", function(e){
+  checkPrenom();
 });
 
 //Verifie le nom
-let nomUser  = document.getElementById("last");
+/*let nomUser  = document.getElementById("last");
 nomUser.addEventListener("input", function(e){
   let nomMessage = document.getElementById("nom-validation");
-  if(nomUser.value.length < 4){
-    nomMessage.innerText = "Nom doit faire plus de 3 caractère !";
-    isValid = !isValid;
+  if(nomUser.value.length < 2){
+    nomMessage.innerText = "Nom doit faire au moins 2 caractères !";
+    isValid = false;
   }else{
     nomMessage.innerText = "";
   }
@@ -59,17 +66,13 @@ emailUser.addEventListener("input", function(e){
   }
 });
 
-//verification de la date de naissance 
-const todayDate = new Date();         //date d'aujourd'hui
-const oldDate = new Date("01,01,1922")      //pour vérifier si il a plus de 100 ans 
-const birthdateUser = document.getElementById("birthdate");
-
+let birthdateUser = document.getElementById("birthdate")
+//verification de la date de naissance         
 birthdateUser.addEventListener("input", function(e){
   let birthdateMessage = document.getElementById("birthdate-valitaion");
-  const date1 = todayDate;
+  const date1 = new Date(); //date d'aujourd'hui
   const date2 = new Date(birthdateUser.value);
-  const date3 = oldDate;
-  console.log(date2);
+  const date3 = new Date("01,01,1922"); //pour vérifier si il a plus de 100 ans 
 
   if(date1 > date2 && date2 > date3){ //si la date est valide
     birthdateMessage.innerText = "";
@@ -80,42 +83,38 @@ birthdateUser.addEventListener("input", function(e){
     birthdateMessage.innerText = "Vous êtes trop vieux !";
     isValid = false;
   }
-});
-
-function validate(){
-  if(document.getElementsByClassName("checkbox-label").checked){
-    console.log("Checkbox is checked")
-  }else{
-    console.log("Checkbox is not checked")
-    /*isValid = !isValid;*/
-  }
-}
-
+});*/
 
 // DOM Elements
 const affichageValider = document.getElementById("afficheInscriValider");
 const boutonValider = document.getElementById("boutonInscription");
 
-/*function boolValid(){
-  if(isValid){
-    console.log("c'est clean");
-  }else{
-    console.log("recommencer la saisi");
-    isValid = !isValid;
-  }
-}*/
 
-// launch modal event
-boutonValider.addEventListener("click", function(e){
-  /*validate();*/
-  let valableMessage = document.getElementById("");
+// Quand l'utilisateur submit le formulaire
+function validate(){
+
+  //declaration d'un booleen pour le test final
+  let isValid = true;
+  console.log("avant"+isValid);
+  // check du prenom
+  let testPrenom = checkPrenom();
+  if(testPrenom == false){
+    console.log(isValid);
+    isValid = false;
+  }
+  console.log("après"+isValid);
+  // contrôle qu'au moins une checkbox soit checkée
+  // chercher sur Google comment faire pour savoir un si une checkbox est checkée parmi une liste de checkbox
+
+  // si mon formulaire est valide ...
   if(isValid){
     affichageValider.style.display = "block";
     modalbg.style.display = "none";
-    console.log("c'est clean");
   }else{
-    valableMessage.innerText = "recommencer la saisi";
-    isValid = !isValid;
+    console.log("pas bon")
   }
-  e.preventDefault();
-});
+  
+  // pour éviter que le formulaire ne soit submit
+  return false;
+
+}
