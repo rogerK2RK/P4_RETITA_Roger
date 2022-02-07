@@ -100,6 +100,22 @@ birthdateUser.addEventListener("input", function(e){
   checkBirthdate();
 });
 
+      // Liste de checkBox
+let checkingTab = document.getElementsByClassName("tab");
+
+// Verfifie si l'utilisateur à cocher un des checkbox
+function checkingArray(){
+  let checkboxConditionMessage = document.getElementById("checkBoxCondUtilisateur");
+  for(var i = 0 ; i <= checkingTab.length ; i++){
+    if(checkingTab[i].checked){
+      checkboxConditionMessage.innerText = "";
+      return;
+    }
+  }
+  checkboxConditionMessage.innerText = "Vous devez choisir une option.";
+  return false;
+}
+
       // checkbox condition generale
 const checkboxConditionUser = document.getElementById("checkbox1");
 
@@ -109,14 +125,11 @@ function checkboxConditionUtilisateur(){
   if(checkboxConditionUser.checked){
     checkboxConditionMessage.innerText = "";
   } else{
-    checkboxConditionMessage.innerText = "* Vous devez vérifier que vous acceptez les termes et conditions.";
+    checkboxConditionMessage.innerText = "Vous devez vérifier que vous acceptez les termes et conditions.";
     return false;
   }
 
 }
-
-
-
 
 // DOM Elements
 const affichageValider = document.getElementById("afficheInscriValider");
@@ -158,6 +171,11 @@ function validate(){
   }
   
   // contrôle qu'au moins une checkbox soit checkée
+  let testCheckingArray = checkingArray();
+  if(testCheckingArray == false){
+    isValid = false;
+  }
+
   // chercher sur Google comment faire pour savoir un si une checkbox est checkée parmi une liste de checkbox
 
   // si mon formulaire est valide ...
@@ -172,3 +190,8 @@ function validate(){
   return false;
 
 }
+
+let botomClose = document.getElementById("boutonFermer");
+botomClose.addEventListener("click", function(e){
+  affichageValider.style.display = "none";
+});
