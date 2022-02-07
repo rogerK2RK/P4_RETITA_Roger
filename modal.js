@@ -100,20 +100,21 @@ birthdateUser.addEventListener("input", function(e){
   checkBirthdate();
 });
 
-      // Liste de checkBox
-var checkingTab = document.getElementsByClassName("tab");
 
-// Verfifie si l'utilisateur à cocher un des checkbox
+// check si une checkbox est checkée 
 function checkingArray(){
-  let checkboxConditionMessage = document.getElementById("checkBoxCondUtilisateur");
-  for(var i= 0; i <= checkingTab.length; i++){
-    if(checkingTab[i].checked){
-      checkboxConditionMessage.innerText = "";
-      return;
-    }
+  let checkbox = document.querySelectorAll('.tab:checked'); 
+  let checkboxConditionMessage = document.getElementById("checkBoxCondOption");
+  if(checkbox.length === 0){   
+    checkboxConditionMessage.innerText = "* Vous devez choisir une option.";
+    console.log("vide")
+    return false; 
+
+  }else{   
+    checkboxConditionMessage.innerText = "";
+    console.log("pas vide")
+
   }
-  checkboxConditionMessage.innerText = "Vous devez choisir une option.";
-  return false;
 }
 
       // checkbox condition generale
@@ -191,7 +192,19 @@ function validate(){
 
 }
 
+// fermez avec le bouton fermer
 let botomClose = document.getElementById("boutonFermer");
 botomClose.addEventListener("click", function(e){
+  affichageValider.style.display = "none";
+});
+
+// fermez les onglets avec la crois le formulaire
+let closeIcone = document.getElementById("closeForm");
+closeIcone.addEventListener("click", function(e){
+  modalbg.style.display = "none";
+});
+// fermez les onglets avec la crois le message d'inscription
+let closeIcone2 = document.getElementById("closeAffichage");
+closeIcone2.addEventListener("click", function(e){
   affichageValider.style.display = "none";
 });
