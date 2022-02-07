@@ -101,12 +101,12 @@ birthdateUser.addEventListener("input", function(e){
 });
 
       // Liste de checkBox
-let checkingTab = document.getElementsByClassName("tab");
+var checkingTab = document.getElementsByClassName("tab");
 
 // Verfifie si l'utilisateur à cocher un des checkbox
 function checkingArray(){
   let checkboxConditionMessage = document.getElementById("checkBoxCondUtilisateur");
-  for(var i = 0 ; i <= checkingTab.length ; i++){
+  for(var i= 0; i <= checkingTab.length; i++){
     if(checkingTab[i].checked){
       checkboxConditionMessage.innerText = "";
       return;
