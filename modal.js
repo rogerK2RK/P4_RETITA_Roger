@@ -69,7 +69,7 @@ function checkEmail(){
   if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailUser.value)){
     emailMessage.innerText = "";
   }else{
-    emailMessage.innerText = "veuiller saisir un mail "+'"'+" exemple : nom.prenom@gmail.com "+'" !';
+    emailMessage.innerText = "Veuiller saisir un mail "+'"'+" exemple : nom.prenom@gmail.com "+'" !';
     return false;
   }
 }
@@ -126,7 +126,7 @@ function checkboxConditionUtilisateur(){
   if(checkboxConditionUser.checked){
     checkboxConditionMessage.innerText = "";
   } else{
-    checkboxConditionMessage.innerText = "Vous devez vérifier que vous acceptez les termes et conditions.";
+    checkboxConditionMessage.innerText = "* Vous devez vérifier que vous acceptez les termes et conditions.";
     return false;
   }
 
@@ -177,14 +177,10 @@ function validate(){
     isValid = false;
   }
 
-  // chercher sur Google comment faire pour savoir un si une checkbox est checkée parmi une liste de checkbox
-
   // si mon formulaire est valide ...
   if(isValid){
     affichageValider.style.display = "block";
     modalbg.style.display = "none";
-  }else{
-    console.log("pas bon")
   }
   
   // pour éviter que le formulaire ne soit submit
@@ -198,12 +194,12 @@ botomClose.addEventListener("click", function(e){
   affichageValider.style.display = "none";
 });
 
-// fermez les onglets avec la crois le formulaire
+// fermez les onglets avec la croix le formulaire
 let closeIcone = document.getElementById("closeForm");
 closeIcone.addEventListener("click", function(e){
   modalbg.style.display = "none";
 });
-// fermez les onglets avec la crois le message d'inscription
+// fermez les onglets avec la croix le message d'inscription
 let closeIcone2 = document.getElementById("closeAffichage");
 closeIcone2.addEventListener("click", function(e){
   affichageValider.style.display = "none";
