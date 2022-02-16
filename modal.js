@@ -28,11 +28,11 @@ const prenomUser = document.getElementById("first");
 // Verifie le prenom passé dans le formulaire
 function checkPrenom(){
   let prenomMessage = document.getElementById("prenom-validation");
-  if(prenomUser.value.length < 2){
-    prenomMessage.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
-    return false
+  if(/^([a-z]{2,})$/.test(prenomUser.value)){
+    prenomMessage.innerText = "";
   }else{
-    prenomMessage.innerText = ""; 
+    prenomMessage.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du prénom."; 
+    return false;
   }
 }
 
@@ -47,11 +47,11 @@ const nomUser  = document.getElementById("last");
 // Verifie le nom passé dans le formulaire
 function checkNom(){
   let nomMessage = document.getElementById("nom-validation");
-  if(nomUser.value.length < 2){
+  if(/^([a-z]{2,})$/.test(nomUser.value)){
+    nomMessage.innerText = "";
+  }else{
     nomMessage.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
     return false;
-  }else{
-    nomMessage.innerText = "";
   }
 }
 
@@ -66,7 +66,7 @@ const emailUser = document.getElementById("email");
 // Verifie l'email passé dans le formulaire
 function checkEmail(){
   let emailMessage = document.getElementById("email-validation");
-  if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailUser.value)){
+  if(/^(([0-9a-z]{2,}))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailUser.value)){
     emailMessage.innerText = "";
   }else{
     emailMessage.innerText = "Veuiller saisir un mail "+'"'+" exemple : nom.prenom@gmail.com "+'" !';
@@ -100,7 +100,23 @@ birthdateUser.addEventListener("input", function(e){
   checkBirthdate();
 });
 
+//number of participation
+let participationNumber = document.getElementById("quantity");
 
+// chekc si il a mis un nombre de participation
+function checkParticipation(){
+  let messageParticipate = document.getElementById("participation-message");
+  if(/^[0-9]*\d$/.test(participationNumber.value)){
+    messageParticipate.innerText = "";
+  }else{
+    messageParticipate.innerText = "Vous devez ramplir se champ";
+    return false;
+  }
+}
+//
+participationNumber.addEventListener("input", function(e){
+  checkParticipation();
+})
 // check si une checkbox est checkée 
 function checkingArray(){
   let radios = document.querySelectorAll('.tab:checked'); 
@@ -162,6 +178,12 @@ function validate(){
     isValid = false;
   }
 
+  // check nombre de participation
+  let testParticipation = checkParticipation();
+  if(testParticipation == false){
+    isValid = false;
+  }
+
   // check checkBox condition utilisateur
   let testCheckbox = checkboxConditionUtilisateur();
   if(testCheckbox == false){
@@ -185,19 +207,24 @@ function validate(){
 
 }
 
+
+// function to close windows
+function closeWindow(window){
+window.style.display = "none";
+}
 // fermez avec le bouton fermer
 let botomClose = document.getElementById("boutonFermer");
 botomClose.addEventListener("click", function(e){
-  affichageValider.style.display = "none";
+  closeWindow(affichageValider);
 });
 
 // fermez les onglets avec la croix le formulaire
 let closeIcone = document.getElementById("closeForm");
 closeIcone.addEventListener("click", function(e){
-  modalbg.style.display = "none";
+  closeWindow(modalbg);
 });
 // fermez les onglets avec la croix le message d'inscription
 let closeIcone2 = document.getElementById("closeAffichage");
 closeIcone2.addEventListener("click", function(e){
-  affichageValider.style.display = "none";
+  closeWindow(affichageValider);
 });
