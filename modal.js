@@ -103,30 +103,27 @@ birthdateUser.addEventListener("input", function(e){
 
 // check si une checkbox est checkée 
 function checkingArray(){
-  let checkbox = document.querySelectorAll('.tab:checked'); 
-  let checkboxConditionMessage = document.getElementById("checkBoxCondOption");
-  if(checkbox.length === 0){   
-    checkboxConditionMessage.innerText = "* Vous devez choisir une option.";
-    console.log("vide")
+  let radios = document.querySelectorAll('.tab:checked'); 
+  let radioMessage = document.getElementById("radioList");
+  if(radios.length === 0){   
+    radioMessage.innerText = "* Vous devez choisir une option.";
     return false; 
 
   }else{   
-    checkboxConditionMessage.innerText = "";
-    console.log("pas vide")
+    radioMessage.innerText = "";
 
   }
 }
 
       // checkbox condition generale
-const checkboxConditionUser = document.getElementById("checkbox1");
-
 // Verifie si le checkbox est check
 function checkboxConditionUtilisateur(){
-  let checkboxConditionMessage = document.getElementById("checkBoxCondUtilisateur");
-  if(checkboxConditionUser.checked){
-    checkboxConditionMessage.innerText = "";
-  } else{
-    checkboxConditionMessage.innerText = "* Vous devez vérifier que vous acceptez les termes et conditions.";
+  let checkbox = document.getElementById("checkbox1");
+  let chekboxMessage = document.getElementById("checkBoxCondUtilisateur")
+  if(checkbox.checked){
+    chekboxMessage.innerText = " "
+  }else{
+    chekboxMessage.innerText = "* Vous devez vérifier que vous acceptez les termes et conditions."
     return false;
   }
 
@@ -166,8 +163,8 @@ function validate(){
   }
 
   // check checkBox condition utilisateur
-  let testCheckboxCondUti = checkboxConditionUtilisateur();
-  if(testCheckboxCondUti == false){
+  let testCheckbox = checkboxConditionUtilisateur();
+  if(testCheckbox == false){
     isValid = false;
   }
   
