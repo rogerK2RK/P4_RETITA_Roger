@@ -77,7 +77,7 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1043px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -90,7 +90,7 @@ img {
   display: flex;
   color: red;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1043px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
@@ -105,7 +105,7 @@ img {
 }
 
 
- @media screen and (max-width: 540px) {
+ @media screen and (max-width: 1109px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -115,6 +115,9 @@ img {
   }
   .topnav a.icon:hover{
     color: #fff;
+  }
+  .topnav a.icon .fa-bars{
+    font-size: 40px;
   }
 } 
 
@@ -495,15 +498,32 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+@media screen and (max-width: 1300px) {
+  .hero-img img{
+    object-fit: cover;
+    width: auto;
+  }
+  .hero-content{
+    width: 35%;
+  }
+  .hero-section{
+    display: flex;
+  }
+  .hero-img{
+    width: 40%;
+  }
+}
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
     box-shadow: unset;
   }
+
   .hero-content {
     background: #fff;
     color: #000;
     padding: 20px;
+    width: auto;
   }
   .hero-content::after {
     content: unset;
@@ -522,6 +542,7 @@ footer {
   .hero-img img {
     border-radius: 10px;
     margin-top: 40px;
+    width: 250%;
   }
   .hero-section > .btn-signup {
     display: block;
